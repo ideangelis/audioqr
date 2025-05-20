@@ -1,17 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Sonido automático</title>
+  <title>Reproducir sonido</title>
 </head>
 <body>
-  <audio autoplay muted playsinline>
-  <source src="PNotif.mp3" type="audio/mpeg">
-</audio>
-
+  <button onclick="document.getElementById('sonido').play()">▶ Reproducir</button>
+  <audio id="sonido">
     <source src="PNotif.mp3" type="audio/mpeg">
     Tu navegador no soporta audio.
   </audio>
 </body>
 </html>
+
