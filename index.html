@@ -2,26 +2,36 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Audio con accesibilidad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Audio accesible móvil</title>
   <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      background-color: #000;
+      font-family: sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     body {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #000; /* Fondo oscuro para alto contraste */
+      padding: 1rem;
     }
 
     button {
-      font-size: 2rem;        /* Texto grande */
-      padding: 1rem 2rem;     /* Botón grande */
-      background-color: #FFD700; /* Color llamativo (amarillo dorado) */
-      color: #000;            /* Texto oscuro para contraste */
+      font-size: 6vw;
+      padding: 1.5rem 2.5rem;
+      background-color: #FFD700;
+      color: #000;
       border: none;
       border-radius: 1rem;
       cursor: pointer;
-      box-shadow: 0 0 10px #FFD700;
+      box-shadow: 0 0 15px #FFD700;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
     }
 
     button:focus {
@@ -42,6 +52,11 @@
     const btn = document.getElementById('activarSonido');
 
     btn.addEventListener('click', () => {
+      // Vibración corta de 100 milisegundos
+      if (navigator.vibrate) {
+        navigator.vibrate(100);
+      }
+
       audio.muted = false;
       audio.play();
       btn.style.display = 'none';
