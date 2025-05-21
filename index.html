@@ -2,7 +2,32 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Audio con políticas modernas</title>
+  <title>Audio con accesibilidad</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #000; /* Fondo oscuro para alto contraste */
+    }
+
+    button {
+      font-size: 2rem;        /* Texto grande */
+      padding: 1rem 2rem;     /* Botón grande */
+      background-color: #FFD700; /* Color llamativo (amarillo dorado) */
+      color: #000;            /* Texto oscuro para contraste */
+      border: none;
+      border-radius: 1rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px #FFD700;
+    }
+
+    button:focus {
+      outline: 4px solid #FFF;
+    }
+  </style>
 </head>
 <body>
   <audio id="audio" autoplay muted loop>
@@ -10,16 +35,16 @@
     Tu navegador no soporta audio.
   </audio>
 
-  <button id="activarSonido">Activar sonido</button>
+  <button id="activarSonido">🔊 Activar sonido</button>
 
   <script>
     const audio = document.getElementById('audio');
     const btn = document.getElementById('activarSonido');
 
     btn.addEventListener('click', () => {
-      audio.muted = false;  // Quita el silencio
-      audio.play();         // Reproduce el audio con sonido
-      btn.style.display = 'none'; // Oculta el botón luego de activarlo
+      audio.muted = false;
+      audio.play();
+      btn.style.display = 'none';
     });
   </script>
 </body>
