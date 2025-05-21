@@ -23,19 +23,19 @@
     button {
       font-size: 6vw;
       padding: 1.5rem 2.5rem;
-      background-color: #FFD700;
-      color: #000;
+      background-color: #FFF;   /* Fondo blanco */
+      color: #000;              /* Texto negro */
       border: none;
-      border-radius: 1rem;
+      border-radius: 0.5rem;    /* Bordes más cuadrados */
       cursor: pointer;
-      box-shadow: 0 0 15px #FFD700;
+      box-shadow: 0 0 15px #FFF;
       width: 100%;
       max-width: 400px;
       text-align: center;
     }
 
     button:focus {
-      outline: 4px solid #FFF;
+      outline: 4px solid #FFD700;
     }
   </style>
 </head>
@@ -52,7 +52,6 @@
     const btn = document.getElementById('activarSonido');
 
     btn.addEventListener('click', () => {
-      // Vibración corta de 100 milisegundos
       if (navigator.vibrate) {
         navigator.vibrate(100);
       }
