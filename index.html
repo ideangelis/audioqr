@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Sonido automático</title>
+  <meta charset="UTF-8" />
+  <title>Audio con políticas modernas</title>
 </head>
 <body>
-  <audio autoplay>
-    <source src="PNotif.mp3" type="audio/mpeg">
+  <audio id="audio" autoplay muted loop>
+    <source src="PNotif.mp3" type="audio/mpeg" />
     Tu navegador no soporta audio.
   </audio>
+
+  <button id="activarSonido">Activar sonido</button>
+
+  <script>
+    const audio = document.getElementById('audio');
+    const btn = document.getElementById('activarSonido');
+
+    btn.addEventListener('click', () => {
+      audio.muted = false;  // Quita el silencio
+      audio.play();         // Reproduce el audio con sonido
+      btn.style.display = 'none'; // Oculta el botón luego de activarlo
+    });
+  </script>
 </body>
 </html>
-
