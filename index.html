@@ -21,16 +21,16 @@
     }
 
     button {
-      font-size: 6vw;
-      padding: 1.5rem 2.5rem;
-      background-color: #FFF;   /* Fondo blanco */
-      color: #000;              /* Texto negro */
+      font-size: 8vw;               /* Más grande que antes */
+      padding: 2rem 3rem;           /* Botón más grande y cómodo */
+      background-color: #FFF;
+      color: #000;
       border: none;
-      border-radius: 0.5rem;    /* Bordes más cuadrados */
+      border-radius: 0.5rem;
       cursor: pointer;
       box-shadow: 0 0 15px #FFF;
       width: 100%;
-      max-width: 400px;
+      max-width: 500px;             /* Más ancho también */
       text-align: center;
     }
 
@@ -45,7 +45,7 @@
     Tu navegador no soporta audio.
   </audio>
 
-  <button id="activarSonido">🔊 Activar sonido</button>
+  <button id="activarSonido">🔊 Escuchar Ahora</button>
 
   <script>
     const audio = document.getElementById('audio');
@@ -58,7 +58,6 @@
 
       audio.muted = false;
       audio.play();
-      btn.style.display = 'none';
     });
   </script>
 </body>
