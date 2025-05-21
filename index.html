@@ -22,7 +22,7 @@
 
     button {
       font-size: 8vw;               /* Más grande que antes */
-      padding: 2rem 3rem;           /* Botón más grande y cómodo */
+      padding: 6rem 3rem;           /* Botón más grande y cómodo */
       background-color: #FFF;
       color: #000;
       border: none;
@@ -40,7 +40,7 @@
   </style>
 </head>
 <body>
-  <audio id="audio" autoplay muted loop>
+  <audio id="audio" autoplay muted>
     <source src="PNotif.mp3" type="audio/mpeg" />
     Tu navegador no soporta audio.
   </audio>
@@ -53,7 +53,7 @@
 
     btn.addEventListener('click', () => {
       if (navigator.vibrate) {
-        navigator.vibrate(100);
+        navigator.vibrate(200);
       }
 
       audio.muted = false;
