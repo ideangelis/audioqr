@@ -2,8 +2,15 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Audio accesible móvil</title>
+
+  <!-- Seguridad -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; media-src 'self';">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="no-referrer">
+
   <style>
     html, body {
       height: 100%;
@@ -21,8 +28,8 @@
     }
 
     button {
-      font-size: 8vw;               /* Más grande que antes */
-      padding: 6rem 3rem;           /* Botón más grande y cómodo */
+      font-size: 8vw;
+      padding: 6rem 3rem;
       background-color: #FFF;
       color: #000;
       border: none;
@@ -30,7 +37,7 @@
       cursor: pointer;
       box-shadow: 0 0 15px #FFF;
       width: 100%;
-      max-width: 500px;             /* Más ancho también */
+      max-width: 500px;
       text-align: center;
     }
 
@@ -39,13 +46,16 @@
     }
   </style>
 </head>
-<body>
-  <audio id="audio" autoplay muted>
+<body role="main" aria-label="Reproductor de audio accesible">
+
+  <audio id="audio" preload="auto" muted>
     <source src="PNotif.mp3" type="audio/mpeg" />
     Tu navegador no soporta audio.
   </audio>
 
-  <button id="activarSonido">🔊 Escuchar Ahora</button>
+  <button id="activarSonido" aria-label="Reproducir sonido" role="button">
+    🔊 Escuchar Ahora
+  </button>
 
   <script>
     const audio = document.getElementById('audio');
@@ -57,7 +67,9 @@
       }
 
       audio.muted = false;
-      audio.play();
+      audio.play().catch(err => {
+        console.warn("Error al reproducir audio:", err);
+      });
     });
   </script>
 </body>
