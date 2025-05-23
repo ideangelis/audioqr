@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Audio accesible móvil</title>
 
-  <!-- Seguridad -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; media-src 'self';">
-  <meta http-equiv="X-Frame-Options" content="DENY">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta name="referrer" content="no-referrer">
+  <!-- Medidas de seguridad -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; media-src 'self';" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="no-referrer" />
 
   <style>
     html, body {
@@ -19,14 +19,12 @@
       font-family: sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
-
     body {
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 1rem;
     }
-
     button {
       font-size: 8vw;
       padding: 6rem 3rem;
@@ -40,7 +38,6 @@
       max-width: 500px;
       text-align: center;
     }
-
     button:focus {
       outline: 4px solid #FFD700;
     }
@@ -48,7 +45,7 @@
 </head>
 <body role="main" aria-label="Reproductor de audio accesible">
 
-  <audio id="audio" autoplay muted>
+  <audio id="audio" preload="auto">
     <source src="PNotif.mp3" type="audio/mpeg" />
     Tu navegador no soporta audio.
   </audio>
@@ -62,17 +59,12 @@
     const btn = document.getElementById('activarSonido');
 
     btn.addEventListener('click', () => {
-      if (navigator.vibrate) navigator.vibrate(200);
-
-      // Asegurar reproducción desde el principio
+      if (navigator.vibrate) {
+        navigator.vibrate(200);
+      }
       audio.currentTime = 0;
-
-      // Reproducción segura con catch
-      audio.play().then(() => {
-        console.log("Audio reproduciéndose");
-      }).catch(err => {
-        console.error("Error:", err);
-        alert("Tu navegador bloqueó la reproducción. Intenta tocar nuevamente.");
+      audio.play().catch(err => {
+        console.error("Error al reproducir audio:", err);
       });
     });
   </script>
