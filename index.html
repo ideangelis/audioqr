@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>Audio accesible móvil</title>
 
   <!-- Seguridad -->
@@ -17,6 +17,7 @@
       margin: 0;
       background-color: #000;
       font-family: sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -45,28 +46,28 @@
     }
   </style>
 </head>
-<body>
+<body role="main" aria-label="Reproductor de audio accesible">
 
-  <!-- No autoplay, no muted -->
-  <audio id="audio" preload="auto">
+  <audio id="audio" autoplay muted>
     <source src="PNotif.mp3" type="audio/mpeg" />
     Tu navegador no soporta audio.
   </audio>
 
-  <button id="activarSonido">🔊 Escuchar Ahora</button>
+  <button id="activarSonido" aria-label="Reproducir sonido" role="button">
+    🔊 Escuchar Ahora
+  </button>
 
   <script>
     const audio = document.getElementById('audio');
     const btn = document.getElementById('activarSonido');
 
     btn.addEventListener('click', () => {
-      audio.currentTime = 0;
-      audio.play().then(() => {
-        console.log("Reproducción iniciada.");
-      }).catch(err => {
-        console.error("Fallo al reproducir:", err);
-        alert("Tu navegador ha bloqueado la reproducción automática. Intenta tocar el botón nuevamente.");
-      });
+      if (navigator.vibrate) {
+        navigator.vibrate(200);
+      }
+
+      audio.muted = false;
+      audio.play();
     });
   </script>
 </body>
