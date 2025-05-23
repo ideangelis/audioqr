@@ -17,7 +17,6 @@
       margin: 0;
       background-color: #000;
       font-family: sans-serif;
-      -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -46,36 +45,29 @@
     }
   </style>
 </head>
-<body role="main" aria-label="Reproductor de audio accesible">
+<body>
 
+  <!-- No autoplay, no muted -->
   <audio id="audio" preload="auto">
     <source src="PNotif.mp3" type="audio/mpeg" />
     Tu navegador no soporta audio.
   </audio>
 
-  <button id="activarSonido" aria-label="Reproducir sonido" role="button">
-    🔊 Escuchar Ahora
-  </button>
+  <button id="activarSonido">🔊 Escuchar Ahora</button>
 
   <script>
     const audio = document.getElementById('audio');
     const btn = document.getElementById('activarSonido');
 
-    const reproducirAudio = () => {
-      if (navigator.vibrate) navigator.vibrate(200);
-
-      // Evita reproducir varias veces
-      btn.disabled = true;
-
+    btn.addEventListener('click', () => {
       audio.currentTime = 0;
-      audio.play().catch(err => {
-        console.warn("Error al reproducir audio:", err);
-        alert("Este navegador bloqueó el audio. Toca nuevamente.");
-        btn.disabled = false;
+      audio.play().then(() => {
+        console.log("Reproducción iniciada.");
+      }).catch(err => {
+        console.error("Fallo al reproducir:", err);
+        alert("Tu navegador ha bloqueado la reproducción automática. Intenta tocar el botón nuevamente.");
       });
-    };
-
-    btn.addEventListener('click', reproducirAudio);
+    });
   </script>
 </body>
 </html>
