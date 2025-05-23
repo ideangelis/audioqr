@@ -48,7 +48,7 @@
 </head>
 <body role="main" aria-label="Reproductor de audio accesible">
 
-  <audio id="audio" preload="auto" muted>
+  <audio id="audio" preload="auto">
     <source src="PNotif.mp3" type="audio/mpeg" />
     Tu navegador no soporta audio.
   </audio>
@@ -61,16 +61,21 @@
     const audio = document.getElementById('audio');
     const btn = document.getElementById('activarSonido');
 
-    btn.addEventListener('click', () => {
-      if (navigator.vibrate) {
-        navigator.vibrate(200);
-      }
+    const reproducirAudio = () => {
+      if (navigator.vibrate) navigator.vibrate(200);
 
-      audio.muted = false;
+      // Evita reproducir varias veces
+      btn.disabled = true;
+
+      audio.currentTime = 0;
       audio.play().catch(err => {
         console.warn("Error al reproducir audio:", err);
+        alert("Este navegador bloqueó el audio. Toca nuevamente.");
+        btn.disabled = false;
       });
-    });
+    };
+
+    btn.addEventListener('click', reproducirAudio);
   </script>
 </body>
 </html>
